@@ -23,6 +23,11 @@ namespace NC_UI_Creator_Lib
         SplitFollowStaticText
     }
 
+    public enum ResizeStyleVariant
+    {
+        None
+    }
+
     public class CUIX_CUI : Aux_XML_DocumentBase
     {
         public const string CUI_DefaultName = "RibbonRoot.cui";
