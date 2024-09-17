@@ -10,13 +10,13 @@ namespace NC_UI_Creator_Lib
     /// <summary>
     /// Класс для представления файла Menu_Package_Info.xml
     /// </summary>
-    public class CUIX_CT : Aux_XML_DocumentBase
+    public class CUIX_CT_File : Aux_XML_DocumentBase
     {
         public const string CT_DefaultName = "[Content_Types].xml";
 
-        public static CUIX_CT CreateDefault()
+        public static CUIX_CT_File CreateDefault()
         {
-            CUIX_CT file_def = new CUIX_CT();
+            CUIX_CT_File file_def = new CUIX_CT_File();
             file_def.p_XML = new XDocument();
 
             Types types_def = new Types();

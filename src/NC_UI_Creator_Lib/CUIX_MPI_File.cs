@@ -10,20 +10,20 @@ namespace NC_UI_Creator_Lib
     /// <summary>
     /// Класс для представления файла Menu_Package_Info.xml
     /// </summary>
-    public class CUIX_MPI : Aux_XML_DocumentBase
+    public class CUIX_MPI_File : Aux_XML_DocumentBase
     {
         public const string MPI_DefaultName = "Menu_Package_Info.xml";
-        public CUIX_MPI()
+        public CUIX_MPI_File()
         {
             p_XML = new XDocument();
         }
 
-        public static CUIX_MPI CreateDefault()
+        public static CUIX_MPI_File CreateDefault()
         {
-            CUIX_MPI file_def = new CUIX_MPI();
+            CUIX_MPI_File file_def = new CUIX_MPI_File();
             MenuPackageParts data_def = new MenuPackageParts();
-            data_def.AddPartData(new PartData("/" + CUIX_CUI.CUI_DefaultName));
-            data_def.AddPartData(new PartData("/" + CUIX_MPI.MPI_DefaultName));
+            data_def.AddPartData(new PartData("/" + CUIX_CUI_File.CUI_DefaultName));
+            data_def.AddPartData(new PartData("/" + CUIX_MPI_File.MPI_DefaultName));
 
             file_def.p_XML.Add(data_def.XML);
 
