@@ -29,6 +29,15 @@ namespace NC_UI_Creator_Lib.CUI
 
         }
 
+        public RibbonPanelSourceReference Reference
+        {
+            get
+            {
+                RibbonPanelSourceReference Ref = new RibbonPanelSourceReference("", this.UID);
+                return Ref;
+            }
+        }
+
         public void AddRibbonCommandButton(RibbonCommandButton RibbonCommandButtonDef)
         {
             p_XML.Add(RibbonCommandButtonDef.XML);
@@ -37,6 +46,11 @@ namespace NC_UI_Creator_Lib.CUI
         public void AddRibbonSplitButton(RibbonSplitButton RibbonSplitButtonDef)
         {
             p_XML.Add(RibbonSplitButtonDef.XML);
+        }
+
+        public void AddRibbonRowPanel(RibbonRowPanel RibbonRowPanelDef)
+        {
+            p_XML.Add(RibbonRowPanelDef.XML);
         }
 
     }

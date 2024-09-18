@@ -13,14 +13,20 @@ namespace NC_UI_Creator_Lib
     {
         public UI_Creator()
         {
+            Initialize();
+        }
+        public void Initialize()
+        {
             _CUI = new CUIX_CUI_File();
             _CT = CUIX_CT_File.CreateDefault();
             _MPI = CUIX_MPI_File.CreateDefault();
-            //_CUIX = new CUIX();
+            _CFG = new CFG_File();
         }
         public CUIX_CUI_File _CUI { get; set; }
         public CUIX_CT_File _CT { get; set; } = CUIX_CT_File.CreateDefault();
         public CUIX_MPI_File _MPI { get; set; } = CUIX_MPI_File.CreateDefault();
+
+        public CFG_File _CFG { get; set; }
 
         private string CUIX_FileName = CUIX_File.CUIX_DefaultFileName;
         public string CUIX_DefaultFilePath

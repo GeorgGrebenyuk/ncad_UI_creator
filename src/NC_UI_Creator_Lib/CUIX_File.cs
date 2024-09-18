@@ -29,21 +29,31 @@ namespace NC_UI_Creator_Lib
         {
             if (cuixSaveDirectoryPath == "") cuixSaveDirectoryPath = AppDomain.CurrentDomain.BaseDirectory;
             if (!Directory.Exists(cuixSaveDirectoryPath)) Directory.CreateDirectory(cuixSaveDirectoryPath);
+            
 
             string CUI_Path = Path.Combine(cuixSaveDirectoryPath, CUIX_CUI_File.CUI_DefaultName);
             string CT_Path = Path.Combine(cuixSaveDirectoryPath, CUIX_CT_File.CT_DefaultName);
             string MPI_Path = Path.Combine(cuixSaveDirectoryPath, CUIX_MPI_File.MPI_DefaultName);
+            string CUIX_Path = Path.Combine(cuixSaveDirectoryPath, cuixDefaultFileName);
 
             _CUI.Write(CUI_Path);
             _CT.Write(CT_Path);
             _MPI.Write(MPI_Path);
 
-            using (var zip = ZipFile.Open(cuixDefaultFileName, ZipArchiveMode.Create))
+            if (File.Exists(CUIX_Path)) File.Delete(CUIX_Path);
+
+            try
             {
-                zip.CreateEntryFromFile(CUI_Path, Path.GetFileName(CUI_Path));
-                zip.CreateEntryFromFile(CT_Path, Path.GetFileName(CUI_Path));
-                zip.CreateEntryFromFile(MPI_Path, Path.GetFileName(CUI_Path));
+                using (var zip = ZipFile.Open(CUIX_Path, ZipArchiveMode.Create))
+                {
+                    zip.CreateEntryFromFile(CUI_Path, Path.GetFileName(CUI_Path));
+                    zip.CreateEntryFromFile(CT_Path, Path.GetFileName(CUI_Path));
+                    zip.CreateEntryFromFile(MPI_Path, Path.GetFileName(CUI_Path));
+                }
             }
+            catch (Exception e) { throw new Exception(e.Message); }
+
+            
         }
     }
 }

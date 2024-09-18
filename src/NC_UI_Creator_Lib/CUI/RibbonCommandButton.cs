@@ -9,7 +9,7 @@ namespace NC_UI_Creator_Lib.CUI
 {
     public class RibbonCommandButton : Aux_XML_ElementBase
     {
-        public string UID { get; set; }
+        public string UID { get; set; } = "";
 
         public string Id { get; set; }
 
