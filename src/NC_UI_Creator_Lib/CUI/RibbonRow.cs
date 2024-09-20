@@ -6,7 +6,7 @@ using System.Xml.Linq;
 
 namespace NC_UI_Creator_Lib.CUI
 {
-    public class RibbonRow : Aux_XML_ElementBase
+    public class RibbonRow : Aux_XML_ElementBase, ItemOfPanel
     {
         public RibbonRow()
         {
@@ -16,6 +16,16 @@ namespace NC_UI_Creator_Lib.CUI
         public void AddRibbonCommandButton(RibbonCommandButton RibbonCommandButtonDef)
         {
             this.p_XML.Add(RibbonCommandButtonDef.XML);
+        }
+
+        public void AddRibbonSplitButton(RibbonSplitButton RibbonSplitButtonDef)
+        {
+            this.p_XML.Add(RibbonSplitButtonDef.XML);
+        }
+
+        public ItemOfPanelVariant GetVariant()
+        {
+            return ItemOfPanelVariant.RibbonRow;
         }
     }
 }

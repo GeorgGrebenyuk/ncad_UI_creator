@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "NC_UI_Creator_Sample": {
+      "commandName": "Project",
+      "nativeDebugging": true
+    }
+  }
+}

@@ -8,17 +8,17 @@ namespace NC_UI_Creator_Lib.CFG
 {
     public class Configman_Command : CFG_Base
     {
-        public string weight { get; set; } = "i10";
+        public int weight { get; set; } = 10;
         public CommandContextVariant cmdType { get; set; } = CommandContextVariant.Document;
         public string intername { get; set; }
         public string DispName { get; set; }
-        public string LocalName { get; set; } = "s";
-        public string StatusText { get; set; } = "s";
+        public string LocalName { get; set; } = "";
+        public string StatusText { get; set; } = "";
         public string BitmapDll { get; set; }
 
         public Configman_Command(string CommandName)
         {
-            this.intername = "s" + CommandName;
+            this.intername = CommandName;
             CFG_SetBlockName(@"\configman\commands\" + CommandName);
         }
 

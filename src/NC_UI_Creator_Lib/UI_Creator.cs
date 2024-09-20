@@ -22,9 +22,9 @@ namespace NC_UI_Creator_Lib
             _MPI = CUIX_MPI_File.CreateDefault();
             _CFG = new CFG_File();
         }
-        public CUIX_CUI_File _CUI { get; set; }
-        public CUIX_CT_File _CT { get; set; } = CUIX_CT_File.CreateDefault();
-        public CUIX_MPI_File _MPI { get; set; } = CUIX_MPI_File.CreateDefault();
+        public CUIX_CUI_File _CUI { get; private set; }
+        public CUIX_CT_File _CT { get; private set; } = CUIX_CT_File.CreateDefault();
+        public CUIX_MPI_File _MPI { get; private set; } = CUIX_MPI_File.CreateDefault();
 
         public CFG_File _CFG { get; set; }
 
@@ -77,7 +77,6 @@ namespace NC_UI_Creator_Lib
         public void SaveCFG(string CFGFileName = CFG_File.CFG_DefaultFileName)
         {
             CFG_FileName = CFGFileName;
-            var _CFG = new CFG_File();
             _CFG.Save(CFGFileName, DataSavePath);
         }
     }

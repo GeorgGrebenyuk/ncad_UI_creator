@@ -14,6 +14,11 @@ namespace NC_UI_Creator_Lib
     {
         public const string CT_DefaultName = "[Content_Types].xml";
 
+        internal CUIX_CT_File()
+        {
+            p_XML = new XDocument();
+
+        }
         public static CUIX_CT_File CreateDefault()
         {
             CUIX_CT_File file_def = new CUIX_CT_File();
@@ -23,7 +28,7 @@ namespace NC_UI_Creator_Lib
             types_def.AddDefault(new Default("cui", "text/xml"));
             types_def.AddDefault(new Default("rels", "application/vnd.openxmlformats-package.relationships+xml"));
             types_def.AddDefault(new Default("xml", "text/xml"));
-            file_def.p_XML.Add(types_def);
+            file_def.p_XML.Add(types_def.XML);
 
             return file_def;
         }

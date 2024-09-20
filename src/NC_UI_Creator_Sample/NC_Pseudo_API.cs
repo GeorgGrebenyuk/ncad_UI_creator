@@ -23,7 +23,7 @@ namespace NC_UI_Creator_Sample
     /// </summary>
     public interface IExtensionApplication
     {
-        public void Initialize();
-        public void Terminate();
+        void Initialize();
+        void Terminate();
     }
 }

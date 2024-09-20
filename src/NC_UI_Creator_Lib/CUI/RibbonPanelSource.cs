@@ -11,19 +11,23 @@ namespace NC_UI_Creator_Lib.CUI
     {
         public string UID { get; set; }
 
-        public string Text { get; set; }
+        //=Text
+        public string Title { get; set; }
 
         public string HiddenInEditor { get; set; }
 
-        public RibbonPanelSource(string _UID, string _Text, bool _HiddenInEditor = false)
+        private List<ItemOfPanel> Items { get; }
+
+        public RibbonPanelSource(string _UID, string _Title, bool _HiddenInEditor = false)
         {
             this.UID = _UID;
-            this.Text = _Text;
+            this.Title = _Title;
             this.HiddenInEditor = $"{_HiddenInEditor}";
+            this.Items = new List<ItemOfPanel>();
 
             p_XML = new XElement("RibbonPanelSource");
             p_XML.Add(new XAttribute("UID", UID));
-            p_XML.Add(new XAttribute("Text", Text));
+            p_XML.Add(new XAttribute("Text", Title));
             p_XML.Add(new XAttribute("HiddenInEditor", HiddenInEditor));
 
 
@@ -38,20 +42,47 @@ namespace NC_UI_Creator_Lib.CUI
             }
         }
 
-        public void AddRibbonCommandButton(RibbonCommandButton RibbonCommandButtonDef)
+        public void AddItem(ItemOfPanel item)
         {
-            p_XML.Add(RibbonCommandButtonDef.XML);
+            Items.Add(item);
+            ItemOfPanelVariant ItemOfPanel_Type = item.GetVariant();
+
+            XElement item_XML = null;
+            if (ItemOfPanel_Type == ItemOfPanelVariant.RibbonSplitButton) item_XML = ((RibbonSplitButton)item).XML;
+            else if (ItemOfPanel_Type == ItemOfPanelVariant.RibbonCommandButton) item_XML = ((RibbonCommandButton)item).XML;
+            else if (ItemOfPanel_Type == ItemOfPanelVariant.RibbonRow) item_XML = ((RibbonRow)item).XML;
+            else if (ItemOfPanel_Type == ItemOfPanelVariant.RibbonRowPanel) item_XML = ((RibbonRowPanel)item).XML;
+            else if (ItemOfPanel_Type == ItemOfPanelVariant.RibbonPanelBreak) item_XML = ((RibbonPanelBreak)item).XML;
+
+            if (item_XML != null) p_XML.Add(item_XML);
+            else
+            {
+                throw new Exception("Неизвестный тип ItemOfPanel" + item);
+            }
         }
 
-        public void AddRibbonSplitButton(RibbonSplitButton RibbonSplitButtonDef)
+        /// <summary>
+        /// Вспомогательный элемент, сигнализирующий, что далее идет выпадающая часть панели
+        /// </summary>
+        public void AddRibbonPanelBreak()
         {
-            p_XML.Add(RibbonSplitButtonDef.XML);
+            p_XML.Add(RibbonPanelBreak.Create().XML);
         }
 
-        public void AddRibbonRowPanel(RibbonRowPanel RibbonRowPanelDef)
-        {
-            p_XML.Add(RibbonRowPanelDef.XML);
-        }
+        //public void AddRibbonCommandButton(RibbonCommandButton RibbonCommandButtonDef)
+        //{
+        //    p_XML.Add(RibbonCommandButtonDef.XML);
+        //}
+
+        //public void AddRibbonSplitButton(RibbonSplitButton RibbonSplitButtonDef)
+        //{
+        //    p_XML.Add(RibbonSplitButtonDef.XML);
+        //}
+
+        //public void AddRibbonRowPanel(RibbonRowPanel RibbonRowPanelDef)
+        //{
+        //    p_XML.Add(RibbonRowPanelDef.XML);
+        //}
 
     }
 }

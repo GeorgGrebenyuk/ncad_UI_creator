@@ -13,7 +13,7 @@ namespace NC_UI_Creator_Lib
     public class CUIX_MPI_File : Aux_XML_DocumentBase
     {
         public const string MPI_DefaultName = "Menu_Package_Info.xml";
-        public CUIX_MPI_File()
+        internal CUIX_MPI_File()
         {
             p_XML = new XDocument();
         }

@@ -38,9 +38,15 @@ namespace NC_UI_Creator_Lib.CFG
 
         internal void CFG_AddInfo(string blockName, object blockValue)
         {
+            if (blockValue == null) return;
             string s_symbol = "";
             Type blockValueType = blockValue.GetType();
-            if (blockValueType == typeof(int)) s_symbol = "i";
+            if (blockValueType.IsEnum)
+            {
+                s_symbol = "i";
+                blockValue = (int)blockValue;
+            }
+            else if (blockValueType == typeof(int)) s_symbol = "i";
             else if (blockValueType == typeof(string)) s_symbol = "s";
             else if (blockValueType == typeof(bool)) 
             {

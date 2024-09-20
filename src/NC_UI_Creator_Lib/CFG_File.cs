@@ -20,7 +20,7 @@ namespace NC_UI_Creator_Lib
 
         public ToolbarsPos ToolbarsPosInfo { get; private set; }
 
-        public CFG_File()
+        internal CFG_File()
         {
             Ribbons = new List<Ribbon>();
             Configman = new Configman();

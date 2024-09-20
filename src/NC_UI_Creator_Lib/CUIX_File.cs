@@ -10,7 +10,7 @@ namespace NC_UI_Creator_Lib
 {
     public class CUIX_File
     {
-        public CUIX_File() { }
+        internal CUIX_File() { }
 
         public CUIX_CUI_File _CUI { get; set; }
         public CUIX_CT_File _CT { get; set; }

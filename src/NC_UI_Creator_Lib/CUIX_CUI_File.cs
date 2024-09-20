@@ -28,6 +28,35 @@ namespace NC_UI_Creator_Lib
         None
     }
 
+    public enum BooleanUpperVariant
+    {
+        True,
+        False
+    }
+
+    public enum BooleanLowerVariant
+    {
+        True,
+        False
+    }
+
+    /// <summary>
+    /// Обобщение для элементов RibbonPanelSource (ItemOfPanelVariant)
+    /// </summary>
+    public interface ItemOfPanel
+    {
+        ItemOfPanelVariant GetVariant();
+    }
+
+    public enum ItemOfPanelVariant
+    {
+        RibbonSplitButton,
+        RibbonRowPanel,
+        RibbonCommandButton,
+        RibbonRow,
+        RibbonPanelBreak
+    }
+
     public class CUIX_CUI_File : Aux_XML_DocumentBase
     {
         public const string CUI_DefaultName = "RibbonRoot.cui";
@@ -60,7 +89,7 @@ namespace NC_UI_Creator_Lib
             }
             root.SetRibbonTabSourceCollection(RibbonTabSourceCollectionDef);
 
-            p_XML.Add(root);
+            p_XML.Add(root.XML);
         }
     }
 }
