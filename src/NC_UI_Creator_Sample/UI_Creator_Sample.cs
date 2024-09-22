@@ -24,7 +24,7 @@ namespace NC_UI_Creator_Sample
             RibbonTabSource myTab = new RibbonTabSource("Sample ribbon", "SampleRibbonId");
 
             //Создаем панель с двумя кнопками (большой размер с картинками). Одна классическая, а другая с выпадающим списком
-            RibbonPanelSource myPanel1 = new RibbonPanelSource("Panel1", "Panel 1");
+            RibbonPanelSource myPanel1 = new RibbonPanelSource("Panel 1");
 
             RibbonCommandButton myButton1_atPanel1 = new RibbonCommandButton("Button1", ButtonStyleVariant.LargeWithText, Loader.NC_COMMAND_1);
             TooltipTitle myButton1_atPanel1_Help = new TooltipTitle("Запускает команду 1");
