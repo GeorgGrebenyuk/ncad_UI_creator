@@ -14,9 +14,9 @@ namespace NC_UI_Creator_Lib.CUI
         public BehaviorVariant Behavior { get; set; }
         public ButtonStyleVariant ButtonStyle { get; set; }
 
-        public RibbonSplitButton(string _Title, BehaviorVariant _Behavior, ButtonStyleVariant _ButtonStyle)
+        public RibbonSplitButton(string Title, ButtonStyleVariant _ButtonStyle, BehaviorVariant _Behavior = BehaviorVariant.SplitFollowStaticText)
         {
-            this.Title = _Title;
+            this.Title = Title;
             this.Behavior = _Behavior;
             this.ButtonStyle = _ButtonStyle;
 

@@ -12,8 +12,10 @@ namespace NC_UI_Creator_Lib.CFG
     public class UniversalElementCollection : CFG_Base
     {
         public List<UniversalElement> Elements { get; private set; }
-        public UniversalElementCollection()
+        public UniversalElementCollection(ElementVariant variant)
         {
+            ElementMode = variant;
+
             string elementName = "";
             if (ElementMode == ElementVariant.Menu) elementName = @"\menu";
             else if (ElementMode == ElementVariant.Toolbars) elementName = @"\toolbars";
@@ -22,9 +24,9 @@ namespace NC_UI_Creator_Lib.CFG
             Elements = new List<UniversalElement>();
         }
 
-        public void AddMenu(Menu_Item Menu_ItemDef)
+        public void AddItem(UniversalElement ItemDef)
         {
-            if (Menu_ItemDef.intername != "" && !Elements.Where(c => c.intername == Menu_ItemDef.intername).Any()) Elements.Add(Menu_ItemDef);
+            if (ItemDef.name != "" && !Elements.Where(c => c.name == ItemDef.name).Any()) Elements.Add(ItemDef);
         }
 
         public bool IsAny()
@@ -36,6 +38,7 @@ namespace NC_UI_Creator_Lib.CFG
         {
             get
             {
+
                 foreach (var menu in Elements)
                 {
                     CFG_AddContent(menu.Content);

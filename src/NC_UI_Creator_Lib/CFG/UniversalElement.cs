@@ -15,17 +15,18 @@ namespace NC_UI_Creator_Lib.CFG
         public string name { get; set; }
         public string intername { get; set; } = "";
         internal string menuName { get; set; } = "";
+        //public Menu_Item ParentMenu { get; set; } = null;
 
-        public void SetData(string name, string intername = "", Menu_Item ParentMenu = null)
+        public void SetData(string name, UniversalElement ParentElement = null, string intername = "")
         {
             this.name = name;
             this.intername = intername;
 
             
-            if (ElementMode == ElementVariant.Menu) menuName = @"menu\";
-            else if (ElementMode == ElementVariant.Toolbars)  menuName = @"toolbars\";
+            if (ElementMode == ElementVariant.Menu) menuName = @"\menu\";
+            else if (ElementMode == ElementVariant.Toolbars)  menuName = @"\toolbars\";
 
-            if (ParentMenu != null) menuName += ParentMenu.menuName + @"\";
+            if (ParentElement != null) menuName = ParentElement.menuName + @"\";
 
             if (intername != "") menuName += intername;
             else menuName += name;

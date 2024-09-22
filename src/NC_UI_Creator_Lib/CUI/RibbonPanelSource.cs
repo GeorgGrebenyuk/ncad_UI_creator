@@ -18,10 +18,11 @@ namespace NC_UI_Creator_Lib.CUI
 
         private List<ItemOfPanel> Items { get; }
 
-        public RibbonPanelSource(string _UID, string _Title, bool _HiddenInEditor = false)
+        public RibbonPanelSource(string Title, string UID = "",  bool _HiddenInEditor = false)
         {
-            this.UID = _UID;
-            this.Title = _Title;
+            if (UID == "") UID = Title;
+            this.UID = UID;
+            this.Title = Title;
             this.HiddenInEditor = $"{_HiddenInEditor}";
             this.Items = new List<ItemOfPanel>();
 

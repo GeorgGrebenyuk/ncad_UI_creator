@@ -11,7 +11,7 @@ namespace NC_UI_Creator_Lib.CUI
     {
         public string UID { get; set; } = "";
 
-        public string Id { get; set; }
+        public string Id { get; set; } = "";
 
         //=Text
         public string Text { get; set; }
@@ -39,11 +39,11 @@ namespace NC_UI_Creator_Lib.CUI
             }
         }
 
-        public RibbonCommandButton(string uID, string id, string text, ButtonStyleVariant buttonStyle, string menuMacroID, string keyTip = "")
+        public RibbonCommandButton(string title, ButtonStyleVariant buttonStyle, string menuMacroID, string id = "", string uID = "", string keyTip = "")
         {
             UID = uID;
             Id = id;
-            Text = text;
+            Text = title;
             ButtonStyle = buttonStyle;
             MenuMacroID = menuMacroID;
             KeyTip = keyTip;

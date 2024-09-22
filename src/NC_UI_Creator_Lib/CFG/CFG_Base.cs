@@ -27,6 +27,20 @@ namespace NC_UI_Creator_Lib.CFG
         Document = 1
     }
 
+    //Для BitmapDll
+    public enum IconVariant
+    {
+        BMP,
+        ICO
+    }
+
+    //Для BitmapDll
+    public enum IconResourceVariant
+    {
+        LocalFile,
+        ResDll
+    }
+
     public abstract class CFG_Base
     {
         //public string BlockName { get; set; }
@@ -51,8 +65,8 @@ namespace NC_UI_Creator_Lib.CFG
             else if (blockValueType == typeof(bool)) 
             {
                 s_symbol = "f";
-                if ((bool)blockValue == true) blockValue = "0";
-                else blockValue = "1";
+                if ((bool)blockValue == true) blockValue = "1";
+                else blockValue = "0";
             }
 
 

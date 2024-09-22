@@ -9,11 +9,12 @@ namespace NC_UI_Creator_Lib.CFG
     public class Ribbon : CFG_Base
     {
         public string RibbonName { get; set; }
-        public string CUIX_Path { get; set; }
-        public Ribbon(string RibbonName, string CUIX_Path)
+        public string CUIX_Path { get; set; } = "%CFG_PATH%\\" + CUIX_File.CUIX_DefaultFileName;
+        public bool Visiable { get; set; } = true;
+        public Ribbon(string RibbonName, string CUIX_Path = "")
         {
+            if (CUIX_Path != "") this.CUIX_Path = CUIX_Path;
             this.RibbonName = RibbonName;
-            this.CUIX_Path = CUIX_Path;
             CFG_SetBlockName(@"\ribbon\" + RibbonName);
             
         }
@@ -23,6 +24,7 @@ namespace NC_UI_Creator_Lib.CFG
             get
             {
                 CFG_AddInfo("CUIX", CUIX_Path);
+                CFG_AddInfo("visiable", Visiable);
 
                 return p_Content;
             }

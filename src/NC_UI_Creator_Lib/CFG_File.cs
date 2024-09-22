@@ -10,7 +10,7 @@ namespace NC_UI_Creator_Lib
     public class CFG_File
     {
         public const string CFG_DefaultFileName = "NC_UI_DEF.cfg";
-
+        public static string[] CFG_Image_Formats = { ".bmp", "*.ico"};
         public List<Ribbon> Ribbons { get; private set; }
         public Configman Configman { get; private set; }
 
@@ -25,11 +25,9 @@ namespace NC_UI_Creator_Lib
             Ribbons = new List<Ribbon>();
             Configman = new Configman();
 
-            Menus = new UniversalElementCollection();
-            Menus.ElementMode = ElementVariant.Menu;
+            Menus = new UniversalElementCollection(ElementVariant.Menu);
 
-            Toolbars = new UniversalElementCollection();
-            Toolbars.ElementMode = ElementVariant.Toolbars;
+            Toolbars = new UniversalElementCollection(ElementVariant.Toolbars);
 
             ToolbarsPosInfo = new ToolbarsPos();
         }
