@@ -221,7 +221,7 @@ namespace NC_UI_Creator_Lib
                             if (index < buttons_Arr.Count()) buttonDef = buttons_Arr[index];
                             else return null;
 
-                            if (usedCommands.Contains(buttonDef.CommandName)) return null;
+                            if (usedCommands.Contains(buttonDef.CommandName)) return CreateButtonDef(index + 1);
 
                             ItemOfPanel createdItem = null;
                             if (CommandNamesInSplit.Contains(buttonDef.CommandName))
