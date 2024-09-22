@@ -116,9 +116,10 @@ namespace NC_UI_Creator_Sample
         {
             string csv_demo_TBSGIS = @"C:\Users\Georg\Documents\GitHub\ncad_UI_creator\test\2\TBS_GIS_2.csv";
 
-            UI_Creator_FromCSV creator = new UI_Creator_FromCSV(csv_demo_TBSGIS, '\t',
-                new UI_Creator_FromCSV.CreationMode[] { UI_Creator_FromCSV.CreationMode.WithClassicMenu, UI_Creator_FromCSV.CreationMode.WithToolbars }, true);
+            var modes = new UI_Creator_FromCSV.CreationMode[] { UI_Creator_FromCSV.CreationMode.WithClassicMenu, UI_Creator_FromCSV.CreationMode.WithToolbars };
+            UI_Creator_FromCSV creator = new UI_Creator_FromCSV(csv_demo_TBSGIS, '\t', true);
 
+            creator.Modes = modes;
             creator.IconResVariant = IconResourceVariant.LocalFile;
             creator.IconFormatVariant = IconVariant.ICO;
             creator.IconsRefPath_or_DLL = "Icons";

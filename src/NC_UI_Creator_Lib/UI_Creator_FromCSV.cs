@@ -54,6 +54,8 @@ namespace NC_UI_Creator_Lib
         public CreationMode[] Modes { get; set; }
         private CSV_Info[] Data { get; set; }
 
+        public string SourceFilePath { get; private set; }
+
         /// <summary>
         /// The name of folder with icons OR the name with extension of Resource-dll. By default = "Isons"
         /// </summary>
@@ -66,11 +68,12 @@ namespace NC_UI_Creator_Lib
         /// </summary>
         public string RibbonName { get; set; }
 
-        public UI_Creator_FromCSV(string filePath, char separator, CreationMode[] modes, bool SkipHeader = false)
+        public UI_Creator_FromCSV(string filePath, char separator, bool SkipHeader = false)
         {
             if (!File.Exists(filePath)) throw new FileNotFoundException("Файл не найден " + filePath);
 
-            Modes = modes;
+            SourceFilePath = filePath;
+            //Modes = modes;
             RibbonName = Path.GetFileNameWithoutExtension(filePath);
 
             int skip = 0;
