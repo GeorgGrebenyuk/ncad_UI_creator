@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 
 using NC_UI_Creator_Lib;
 using NC_UI_Creator_Lib.CUI;
@@ -15,10 +15,8 @@ namespace NC_UI_Creator_Sample
     /// </summary>
     public class UI_Creator_Sample
     {
-        [STAThread]
-       public static void Main(string[] args)
-       {
-
+        private static void CreateManual()
+        {
             UI_Creator uI_Creator = new UI_Creator();
             uI_Creator.DataSavePath = @"C:\Users\Georg\Documents\GitHub\ncad_UI_creator\test\1";
             //Создаем определение вспомогательного файла *.cui, составная CUIX, описывающий интерфейс
@@ -28,16 +26,16 @@ namespace NC_UI_Creator_Sample
             //Создаем панель с двумя кнопками (большой размер с картинками). Одна классическая, а другая с выпадающим списком
             RibbonPanelSource myPanel1 = new RibbonPanelSource("Panel1", "Panel 1");
 
-            RibbonCommandButton myButton1_atPanel1 = new RibbonCommandButton("", "Button1", "Кнопка 1", ButtonStyleVariant.LargeWithText, Loader.NC_COMMAND_1);
+            RibbonCommandButton myButton1_atPanel1 = new RibbonCommandButton("Button1", ButtonStyleVariant.LargeWithText, Loader.NC_COMMAND_1);
             TooltipTitle myButton1_atPanel1_Help = new TooltipTitle("Запускает команду 1");
             myButton1_atPanel1.Tooltip = myButton1_atPanel1_Help;
 
-            RibbonSplitButton myButton2_atPanel1 = new RibbonSplitButton("Группа кнопок", BehaviorVariant.SplitFollowStaticText, ButtonStyleVariant.LargeWithText);
-            RibbonCommandButton myButton1_myButton2 = new RibbonCommandButton("", "Button2", "Кнопка-1 в группе", ButtonStyleVariant.LargeWithText, Loader.NC_COMMAND_2);
+            RibbonSplitButton myButton2_atPanel1 = new RibbonSplitButton("Группа кнопок", ButtonStyleVariant.LargeWithText);
+            RibbonCommandButton myButton1_myButton2 = new RibbonCommandButton("Button2", ButtonStyleVariant.LargeWithText, Loader.NC_COMMAND_2);
             TooltipTitle myButton1_myButton2_Help = new TooltipTitle("Запускает команду 1 из группы");
             myButton1_myButton2.Tooltip = myButton1_atPanel1_Help;
 
-            RibbonCommandButton myButton2_myButton2 = new RibbonCommandButton("", "Button3", "Кнопка-2 в группе", ButtonStyleVariant.LargeWithText, Loader.NC_COMMAND_3);
+            RibbonCommandButton myButton2_myButton2 = new RibbonCommandButton("Button3", ButtonStyleVariant.LargeWithText, Loader.NC_COMMAND_3);
             TooltipTitle myButton2_myButton2_Help = new TooltipTitle("Запускает команду 2 из группы");
             myButton2_myButton2.Tooltip = myButton2_myButton2_Help;
 
@@ -52,7 +50,7 @@ namespace NC_UI_Creator_Sample
             //Сперва добавляет специальный элемент, "сигнализирующий" о конце кнопок на панели
             myPanel1.AddRibbonPanelBreak();
             //Теперь добавим какую-либо новую кнопку
-            RibbonCommandButton myButton4_atPanel1_Bottom = new RibbonCommandButton("", "Button4", "Кнопка 4 низ", ButtonStyleVariant.LargeWithText, Loader.NC_COMMAND_4);
+            RibbonCommandButton myButton4_atPanel1_Bottom = new RibbonCommandButton("Button4", ButtonStyleVariant.LargeWithText, Loader.NC_COMMAND_4);
             myPanel1.AddItem(myButton4_atPanel1_Bottom);
 
 
@@ -79,7 +77,7 @@ namespace NC_UI_Creator_Sample
             myButton1_atPanel1_CFG.LocalName = myButton1_myButton2.Id;
             myButton1_atPanel1_CFG.DispName = myButton1_myButton2.Text;
             myButton1_atPanel1_CFG.StatusText = "Выводит окно 1";
-            myButton1_atPanel1_CFG.BitmapDll = "Icons\\PseudoIcon_32.bmp";
+            myButton1_atPanel1_CFG.SetIcon(IconResourceVariant.ResDll, IconVariant.ICO, "a_cap", "MenuRes.dll");
 
             //Кнопка будет доступна вне любого документа
             myButton1_atPanel1_CFG.cmdType = CommandContextVariant.Application;
@@ -90,16 +88,16 @@ namespace NC_UI_Creator_Sample
             myButton1_myButton2_CFG.DispName = myButton1_atPanel1.Text;
             myButton1_myButton2_CFG.StatusText = "Кнопка 1 из группы на панели 1";
             myButton1_myButton2_CFG.cmdType = CommandContextVariant.Document;
-            myButton1_myButton2_CFG.BitmapDll = "Icons\\PseudoIcon_32.bmp";
+            myButton1_myButton2_CFG.SetIcon(IconResourceVariant.ResDll, IconVariant.ICO, "k_cap", "MenuRes.dll");
             uI_Creator._CFG.Configman.Commands.AddCommand(myButton1_myButton2_CFG);
-            
+
 
             Configman_Command myButton2_myButton2_CFG = new Configman_Command(myButton2_myButton2.MenuMacroID);
             myButton2_myButton2_CFG.LocalName = myButton2_myButton2.Id;
             myButton2_myButton2_CFG.DispName = myButton2_myButton2.Text;
             myButton2_myButton2_CFG.StatusText = "Кнопка 2 из группы на панели 1";
             myButton2_myButton2_CFG.cmdType = CommandContextVariant.Document;
-            myButton2_myButton2_CFG.BitmapDll = "Icons\\PseudoIcon_32.bmp";
+            myButton2_myButton2_CFG.SetIcon(IconResourceVariant.ResDll, IconVariant.BMP, "s_cap", "MenuRes.dll");
             uI_Creator._CFG.Configman.Commands.AddCommand(myButton2_myButton2_CFG);
 
             Configman_Command myButton4_atPanel1_Bottom_CFG = new Configman_Command(myButton4_atPanel1_Bottom.MenuMacroID);
@@ -107,11 +105,40 @@ namespace NC_UI_Creator_Sample
             myButton4_atPanel1_Bottom_CFG.DispName = myButton4_atPanel1_Bottom.Text;
             myButton4_atPanel1_Bottom_CFG.StatusText = "Кнопка 4 из выпадающей панели вниз";
             myButton4_atPanel1_Bottom_CFG.cmdType = CommandContextVariant.Document;
-            myButton4_atPanel1_Bottom_CFG.BitmapDll = "Icons\\PseudoIcon_32.bmp";
+            myButton4_atPanel1_Bottom_CFG.SetIcon(IconResourceVariant.LocalFile, IconVariant.BMP, "PseudoIcon_32", "Icons");
             uI_Creator._CFG.Configman.Commands.AddCommand(myButton4_atPanel1_Bottom_CFG);
-            
+
             //создание классического меню для панелей и кнопок на них
             uI_Creator.SaveCFG();
-       }
+        }
+
+        private static void CreateFromCSV()
+        {
+            string csv_demo_TBSGIS = @"C:\Users\Georg\Documents\GitHub\ncad_UI_creator\test\2\TBS_GIS_2.csv";
+
+            UI_Creator_FromCSV creator = new UI_Creator_FromCSV(csv_demo_TBSGIS, '\t',
+                new UI_Creator_FromCSV.CreationMode[] { UI_Creator_FromCSV.CreationMode.WithClassicMenu, UI_Creator_FromCSV.CreationMode.WithToolbars }, true);
+
+            creator.IconResVariant = IconResourceVariant.LocalFile;
+            creator.IconFormatVariant = IconVariant.ICO;
+            creator.IconsRefPath_or_DLL = "Icons";
+            creator.RibbonName = "TBS GIS2";
+
+            var UI_Data = creator.Create();
+            UI_Data.DataSavePath = Path.GetDirectoryName(csv_demo_TBSGIS);
+
+            UI_Data.SaveCUIX();
+            UI_Data.SaveCFG();
+        }
+
+        [STAThread]
+        public static void Main(string[] args)
+        {
+            CreateFromCSV();
+            CreateManual();
+
+            Console.WriteLine("End!");
+
+        }
     }
 }
