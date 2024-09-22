@@ -7,6 +7,9 @@ using System.Xml.Linq;
 
 namespace NC_UI_Creator_Lib.CFG
 {
+    /// <summary>
+    /// Describe the location of one toolbar block of CFG
+    /// </summary>
     public class ToolbarsPos_Item : CFG_Base
     {
         public DockPositionVariant DockPosition {  get; set; }

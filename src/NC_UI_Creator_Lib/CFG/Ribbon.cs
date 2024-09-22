@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace NC_UI_Creator_Lib.CFG
 {
+    /// <summary>
+    /// Describe the "ribbon" block of CFG
+    /// </summary>
     public class Ribbon : CFG_Base
     {
         public string RibbonName { get; set; }

@@ -6,14 +6,33 @@ using System.Threading.Tasks;
 
 namespace NC_UI_Creator_Lib.CFG
 {
+    /// <summary>
+    /// Describe the single command in configman's block of CFG
+    /// </summary>
     public class Configman_Command : CFG_Base
     {
         public int weight { get; set; } = 10;
         public CommandContextVariant cmdType { get; set; } = CommandContextVariant.Document;
+
+        /// <summary>
+        /// The command for the button
+        /// </summary>
         public string intername { get; set; }
+
+        /// <summary>
+        /// The display name of button
+        /// </summary>
         public string DispName { get; set; }
         public string LocalName { get; set; } = "";
+
+        /// <summary>
+        /// The extended test (after mouse hover)
+        /// </summary>
         public string StatusText { get; set; } = "";
+
+        /// <summary>
+        /// The information about icon's storage (local or in dll) and icon's name
+        /// </summary>
         public string BitmapDll { get; private set; }
 
         public Configman_Command(string CommandName)
@@ -23,12 +42,12 @@ namespace NC_UI_Creator_Lib.CFG
         }
 
         /// <summary>
-        /// Задает информацию об иконке команды
+        /// Set info about icon
         /// </summary>
-        /// <param name="iconResVariant">Тип ресурса: локальная картинка (BMP или ICO) или ресурсная DLL с этими же форматами</param>
-        /// <param name="iconVariant">Тип картинки (BMP или ICO)</param>
-        /// <param name="icon_name">Имя файла БЕЗ расширения</param>
-        /// <param name="dll_or_localPath">Относительный путь к картинке или имя dll с расширением</param>
+        /// <param name="iconResVariant">The resources type: local file (.ICO or .BMP) or resource-dll with icons (.ICO or .BMP)</param>
+        /// <param name="iconVariant">The file type of image (.ICO or .BMP)</param>
+        /// <param name="icon_name">Filename without extension</param>
+        /// <param name="dll_or_localPath">Relative path to images or Resource-dll's name with extension</param>
         public void SetIcon(IconResourceVariant iconResVariant, IconVariant iconVariant, string icon_name, string dll_or_localPath = "")
         {
             if (iconResVariant == IconResourceVariant.LocalFile)

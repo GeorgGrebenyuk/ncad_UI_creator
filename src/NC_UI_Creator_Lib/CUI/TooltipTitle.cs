@@ -7,7 +7,10 @@ using System.Xml.Linq;
 
 namespace NC_UI_Creator_Lib.CUI
 {
-    //TODO: Разобраться с элементом (непонятно, что он делает), т.к. влияния не видно
+    //TODO: Not working
+    /// <summary>
+    /// Describe the TooltipTitle element of CUI
+    /// </summary>
     public class TooltipTitle : Aux_XML_ElementBase
     {
         public BooleanLowerVariant xlate {  get; set; }

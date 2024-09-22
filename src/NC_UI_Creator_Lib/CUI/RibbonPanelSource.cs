@@ -7,6 +7,9 @@ using System.Xml.Linq;
 
 namespace NC_UI_Creator_Lib.CUI
 {
+    /// <summary>
+    /// Describe Panel (RibbonPanelSource) of CUI: the collection of other buttons or row-based structure
+    /// </summary>
     public class RibbonPanelSource : Aux_XML_ElementBase
     {
         public string UID { get; set; }

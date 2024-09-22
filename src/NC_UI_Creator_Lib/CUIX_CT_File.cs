@@ -8,7 +8,7 @@ using System.Xml.Linq;
 namespace NC_UI_Creator_Lib
 {
     /// <summary>
-    /// Класс для представления файла Menu_Package_Info.xml
+    /// Describe the [Content_Types].xml file (the un-compulsory part of CUIX)
     /// </summary>
     public class CUIX_CT_File : Aux_XML_DocumentBase
     {

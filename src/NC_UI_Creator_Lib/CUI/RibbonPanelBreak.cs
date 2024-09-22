@@ -7,6 +7,9 @@ using System.Xml.Linq;
 
 namespace NC_UI_Creator_Lib.CUI
 {
+    /// <summary>
+    /// Describe the auxiliary element of Panel that mark of "start" drop-down panel's content
+    /// </summary>
     public class RibbonPanelBreak : Aux_XML_ElementBase, ItemOfPanel
     {
         public RibbonPanelBreak()

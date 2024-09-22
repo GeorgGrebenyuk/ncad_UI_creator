@@ -6,6 +6,9 @@ using System.Xml.Linq;
 
 namespace NC_UI_Creator_Lib.CUI
 {
+    /// <summary>
+    /// Describe the RibbonRow-element of CUI
+    /// </summary>
     public class RibbonRow : Aux_XML_ElementBase, ItemOfPanel
     {
         public RibbonRow()

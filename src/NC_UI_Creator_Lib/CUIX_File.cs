@@ -8,6 +8,9 @@ using System.IO;
 
 namespace NC_UI_Creator_Lib
 {
+    /// <summary>
+    /// Describe the .CUIX-file content
+    /// </summary>
     public class CUIX_File
     {
         internal CUIX_File() { }

@@ -7,6 +7,9 @@ using System.Xml.Linq;
 
 namespace NC_UI_Creator_Lib.CUI
 {
+    /// <summary>
+    /// Describe the RibbonTabSource of CUI (the info, what panels are in ribbon)
+    /// </summary>
     public class RibbonTabSource : Aux_XML_ElementBase
     {
         //=Text

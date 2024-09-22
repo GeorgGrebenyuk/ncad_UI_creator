@@ -7,6 +7,9 @@ using System.Xml.Linq;
 
 namespace NC_UI_Creator_Lib.CUI
 {
+    /// <summary>
+    /// Describe the RibbonCommandButton elements of CUI (information about single button)
+    /// </summary>
     public class RibbonCommandButton : Aux_XML_ElementBase, ItemOfPanel
     {
         public string UID { get; set; } = "";

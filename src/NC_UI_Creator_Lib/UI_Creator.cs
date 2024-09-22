@@ -7,7 +7,7 @@ using System.IO;
 namespace NC_UI_Creator_Lib
 {
     /// <summary>
-    /// Общий класс с функциональностью по созданию CFG + CUIX
+    /// The auxiliary class with functions to create CUIX + CFG files and their content
     /// </summary>
     public class UI_Creator
     {

@@ -7,6 +7,9 @@ using NC_UI_Creator_Lib.CFG;
 
 namespace NC_UI_Creator_Lib
 {
+    /// <summary>
+    /// Describe the CFG file (info about commands, classic menu, toolbars)
+    /// </summary>
     public class CFG_File
     {
         public const string CFG_DefaultFileName = "NC_UI_DEF.cfg";

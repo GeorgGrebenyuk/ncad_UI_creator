@@ -27,7 +27,7 @@ namespace NC_UI_Creator_Lib
             {
                 this.XML.Save(path);
             }
-            catch (Exception ex) { throw new Exception("Ошибка сохранения по пути " + path + " " + ex.Message); }
+            catch (Exception ex) { throw new Exception("The error if saving by path = " + path + " " + ex.Message); }
         }
 
         public virtual void SaveEdits() { }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace NC_UI_Creator_Lib.CFG
 {
     /// <summary>
-    /// Конструкия для описания элементов CFG-файла menu и toolbar
+    /// The universal class for describe "menu" and "toolbar" elements of CFG
     /// </summary>
     public class UniversalElement : CFG_Base
     {

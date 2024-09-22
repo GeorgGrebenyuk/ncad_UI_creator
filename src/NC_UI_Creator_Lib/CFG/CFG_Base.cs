@@ -19,22 +19,25 @@ namespace NC_UI_Creator_Lib.CFG
         sTop
     }
 
+    /// <summary>
+    /// The context of commands (accessibility of buttons)
+    /// </summary>
     public enum CommandContextVariant : int
     {
-        //Приложение = i0
+        //Application = i0
         Application = 0,
-        //Документ = i1
+        //Document = i1
         Document = 1
     }
 
-    //Для BitmapDll
+    //For CFG BitmapDll
     public enum IconVariant
     {
         BMP,
         ICO
     }
 
-    //Для BitmapDll
+    //For CFG BitmapDll
     public enum IconResourceVariant
     {
         LocalFile,

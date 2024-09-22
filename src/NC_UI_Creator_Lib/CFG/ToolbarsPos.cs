@@ -7,6 +7,9 @@ using System.Xml.Linq;
 
 namespace NC_UI_Creator_Lib.CFG
 {
+    /// <summary>
+    /// Describe the "toolbarspos" block (location of toolbar elements) of CFG
+    /// </summary>
     public class ToolbarsPos : CFG_Base
     {
         public ToolbarsPos() 

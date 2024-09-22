@@ -11,12 +11,12 @@ namespace NC_UI_Creator_Lib
 {
     
     /// <summary>
-    /// Вспомогательный класс, обрабатывающий поданный CSV-файл и генерирующий по нему UI
+    /// The auxiliary class for generate UI from CSV file. Look docs for more info.
     /// </summary>
     public class UI_Creator_FromCSV
     {
         /// <summary>
-        /// Вспомогательный класс, опсиывающий строку CSV-файла (информация по командам)
+        /// The auxiliary class, describe the single command (button)
         /// </summary>
         internal class CSV_Info
         {
@@ -26,7 +26,7 @@ namespace NC_UI_Creator_Lib
             public string Panel {  get; set; }
             public ButtonStyleVariant ButtonStyle {  get; set; }
             public string SplitButtonName { get; set; } = "";
-            //Включать или нет в файлы UI
+            //?
             //public bool Use { get; set; } = true;
 
             public CSV_Info(string fileLine, char separator)
@@ -55,19 +55,14 @@ namespace NC_UI_Creator_Lib
         private CSV_Info[] Data { get; set; }
 
         /// <summary>
-        /// Наименование папки с иконками (относительный путь) ИЛИ Наименование ресурсной DLL
+        /// The name of folder with icons OR the name with extension of Resource-dll. By default = "Isons"
         /// </summary>
         public string IconsRefPath_or_DLL { get; set; } = "Icons";
         public IconResourceVariant IconResVariant { get; set; } = IconResourceVariant.LocalFile;
         public IconVariant IconFormatVariant { get; set; } = IconVariant.BMP;
 
         /// <summary>
-        /// Абсолютный путь до папки для сохранения результата. По Умолчанию папка с файлом
-        /// </summary>
-        public string OutputBasePath { get; set; }
-
-        /// <summary>
-        /// Наименование ленты. По умолчанию = имени файла без расширения
+        /// The ribbon's name. By default = the name of CSV without extension
         /// </summary>
         public string RibbonName { get; set; }
 
@@ -77,7 +72,6 @@ namespace NC_UI_Creator_Lib
 
             Modes = modes;
             RibbonName = Path.GetFileNameWithoutExtension(filePath);
-            OutputBasePath = Path.GetDirectoryName(filePath);
 
             int skip = 0;
             if (SkipHeader) skip = 1;
@@ -109,7 +103,7 @@ namespace NC_UI_Creator_Lib
             ourRibbon_Toolbar.SetData(RibbonName);
             if (Modes.Contains(CreationMode.WithToolbars)) helper._CFG.Toolbars.AddItem(ourRibbon_Toolbar);
 
-            //Создадим словарь Панель:Данные
+            //The temp collection Panel:Content
             Dictionary<string, List<CSV_Info>> panel2contents = new Dictionary<string, List<CSV_Info>>();
             foreach (var oneCommandInfo in Data)
             {
@@ -134,7 +128,7 @@ namespace NC_UI_Creator_Lib
                 ourPanel_Toolbar.SetData(panelName);
                 if (Modes.Contains(CreationMode.WithToolbars)) helper._CFG.Toolbars.AddItem(ourPanel_Toolbar);
 
-                //Сперва получим кнопки, вложенные в SplitButton (если таковые есть)
+                //Let's getting a buttons inside SplitButton (if exists)
                 var SplitButtons = panel2content.Value.Where(a => a.SplitButtonName != "");
                 Dictionary<string, List<CSV_Info>> SplitButton2Data = new Dictionary<string, List<CSV_Info>>();
                 List<string> CommandNamesInSplit = new List<string>();
@@ -153,17 +147,18 @@ namespace NC_UI_Creator_Lib
                     }
                 }
 
-                /*Для расстановки кнопок следует эффективно расходовать место на панели.
-                 * LargeWithText и LargeWithoutText размещаются во всю величину высоты ленты.
-                 * MediumWithText и MediumWithoutText могут быть сгруппированы по 2 для высоты ленты
-                 * SmallWithText и SmallWithoutText могут быть сгруппированы по 3 для высоты ленты.
-                 * Целессобразно запустить обработку сперва для крупных, потом для средних, и в конце -- для мелких
+                /* There need an effectivence for placing buttons in panel's area: 
+                 * LargeWithText и LargeWithoutText are placing in full-height of panel.
+                 * MediumWithText и MediumWithoutText there are two icons can be placing in panel's height
+                 * SmallWithText и SmallWithoutText there are three icons can be placing in panel's height.
+                 * It's 
+                 * It is advisable to run process the firstly for large, the next -- for medium, and in the end -- for small buttons
                  */
                 ButtonStyleVariant[] LargeStyles = new ButtonStyleVariant[] { ButtonStyleVariant.LargeWithText, ButtonStyleVariant.LargeWithoutText };
                 ButtonStyleVariant[] MediumStyles = new ButtonStyleVariant[] { ButtonStyleVariant.MediumWithText, ButtonStyleVariant.MediumWithoutText };
                 ButtonStyleVariant[] SmallStyles = new ButtonStyleVariant[] { ButtonStyleVariant.SmallWithoutText, ButtonStyleVariant.SmallWithText };
 
-                //Временный список для учета обработанных команд, для Split
+                //The temp collection for useful commands (actually for Split's content)
                 List<string> usedCommands = new List<string>();
 
                 ButtonsProcessing(panel2content.Value.Where(b => LargeStyles.Contains(b.ButtonStyle)), 1);
@@ -221,6 +216,7 @@ namespace NC_UI_Creator_Lib
                             if (index < buttons_Arr.Count()) buttonDef = buttons_Arr[index];
                             else return null;
 
+                            //If thet command was processed (as split's element)
                             if (usedCommands.Contains(buttonDef.CommandName)) return CreateButtonDef(index + 1);
 
                             ItemOfPanel createdItem = null;

@@ -7,10 +7,13 @@ using System.Xml.Linq;
 
 namespace NC_UI_Creator_Lib.CUI
 {
+    /// <summary>
+    /// Describe the root-element of CUI-file
+    /// </summary>
     public class RibbonRoot : Aux_XML_ElementBase
     {
 
-        public RibbonRoot()
+        internal RibbonRoot()
         {
             p_XML = new XElement("RibbonRoot");
         }

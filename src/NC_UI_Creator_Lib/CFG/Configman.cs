@@ -7,7 +7,9 @@ using System.Xml.Linq;
 
 namespace NC_UI_Creator_Lib.CFG
 {
-    
+    /// <summary>
+    /// Describe the "configman" block of CFG
+    /// </summary>
     public class Configman : CFG_Base
     {
         public Configman()

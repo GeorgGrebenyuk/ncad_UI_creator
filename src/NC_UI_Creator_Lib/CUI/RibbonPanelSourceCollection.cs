@@ -7,9 +7,12 @@ using System.Xml.Linq;
 
 namespace NC_UI_Creator_Lib.CUI
 {
+    /// <summary>
+    /// Describe the collection of Panels
+    /// </summary>
     public class RibbonPanelSourceCollection : Aux_XML_ElementBase
     {
-        public RibbonPanelSourceCollection()
+        internal RibbonPanelSourceCollection()
         {
             p_XML = new XElement("RibbonPanelSourceCollection");
         }
