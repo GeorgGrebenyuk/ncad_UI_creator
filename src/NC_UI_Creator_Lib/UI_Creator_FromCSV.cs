@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using NC_UI_Creator_Lib.CUI;
 using NC_UI_Creator_Lib.CFG;
+using static NC_UI_Creator_Lib.UI_Creator_FromCSV_Config;
 
 namespace NC_UI_Creator_Lib
 {
@@ -46,45 +47,26 @@ namespace NC_UI_Creator_Lib
 
             
         }
-        public enum CreationMode
-        {
-            WithClassicMenu,
-            WithToolbars
-        }
-        public CreationMode[] Modes { get; set; }
+
+        
         private CSV_Info[] Data { get; set; }
-
-        public string SourceFilePath { get; private set; }
-
-        /// <summary>
-        /// The name of folder with icons OR the name with extension of Resource-dll. By default = "Isons"
-        /// </summary>
-        public string IconsRefPath_or_DLL { get; set; } = "Icons";
-        public IconResourceVariant IconResVariant { get; set; } = IconResourceVariant.LocalFile;
-        public IconVariant IconFormatVariant { get; set; } = IconVariant.BMP;
-
-        /// <summary>
-        /// The ribbon's name. By default = the name of CSV without extension
-        /// </summary>
-        public string RibbonName { get; set; }
-
-        public UI_Creator_FromCSV(string filePath, char separator, bool SkipHeader = false)
+        private UI_Creator_FromCSV_Config _Config { get; set; }
+        public UI_Creator_FromCSV(UI_Creator_FromCSV_Config config)
         {
-            if (!File.Exists(filePath)) throw new FileNotFoundException("Файл не найден " + filePath);
-
-            SourceFilePath = filePath;
+            _Config = config;
+            if (!File.Exists(_Config.CSV_FilePath)) throw new FileNotFoundException("Файл не найден " + _Config.CSV_FilePath);
             //Modes = modes;
-            RibbonName = Path.GetFileNameWithoutExtension(filePath);
+            _Config.RibbonName = Path.GetFileNameWithoutExtension(_Config.CSV_FilePath);
 
             int skip = 0;
-            if (SkipHeader) skip = 1;
-            string[] file_data = File.ReadAllLines(filePath).Skip(skip).Where(line=>line.Contains(separator)).ToArray();
+            if (_Config.CSV_SkipHeader) skip = 1;
+            string[] file_data = File.ReadAllLines(_Config.CSV_FilePath).Skip(skip).Where(line=>line.Contains(_Config.CSV_Separator)).ToArray();
             Data = new CSV_Info[file_data.Length];
 
             int lines_counter = 0;
             foreach (string line in file_data)
             {
-                CSV_Info lineDef = new CSV_Info(line, separator);
+                CSV_Info lineDef = new CSV_Info(line, _Config.CSV_Separator);
                 Data[lines_counter] = lineDef;
                 lines_counter++;
             }
@@ -94,17 +76,17 @@ namespace NC_UI_Creator_Lib
         {
             UI_Creator helper = new UI_Creator();
 
-            Ribbon ourRibbon_CFG = new Ribbon(RibbonName);
+            Ribbon ourRibbon_CFG = new Ribbon(_Config.RibbonName);
             helper._CFG.Ribbons.Add(ourRibbon_CFG);
 
-            RibbonTabSource ourRibbon = new RibbonTabSource(RibbonName);
+            RibbonTabSource ourRibbon = new RibbonTabSource(_Config.RibbonName);
             Menu_Item ourRibbon_Menu = new Menu_Item();
-            ourRibbon_Menu.SetData(RibbonName);
-            if (Modes.Contains(CreationMode.WithClassicMenu)) helper._CFG.Menus.AddItem(ourRibbon_Menu);
+            ourRibbon_Menu.SetData(_Config.RibbonName);
+            if (_Config.Modes.Contains(CreationMode.WithClassicMenu)) helper._CFG.Menus.AddItem(ourRibbon_Menu);
 
             Toolbar_Item ourRibbon_Toolbar = new Toolbar_Item();
-            ourRibbon_Toolbar.SetData(RibbonName);
-            if (Modes.Contains(CreationMode.WithToolbars)) helper._CFG.Toolbars.AddItem(ourRibbon_Toolbar);
+            ourRibbon_Toolbar.SetData(_Config.RibbonName);
+            if (_Config.Modes.Contains(CreationMode.WithToolbars)) helper._CFG.Toolbars.AddItem(ourRibbon_Toolbar);
 
             //The temp collection Panel:Content
             Dictionary<string, List<CSV_Info>> panel2contents = new Dictionary<string, List<CSV_Info>>();
@@ -125,11 +107,11 @@ namespace NC_UI_Creator_Lib
                 RibbonPanelSource ourPanel = new RibbonPanelSource(panelName);
                 Menu_Item ourPanel_Menu = new Menu_Item();
                 ourPanel_Menu.SetData(panelName, ourRibbon_Menu);
-                if (Modes.Contains(CreationMode.WithClassicMenu)) helper._CFG.Menus.AddItem(ourPanel_Menu);
+                if (_Config.Modes.Contains(CreationMode.WithClassicMenu)) helper._CFG.Menus.AddItem(ourPanel_Menu);
 
                 Toolbar_Item ourPanel_Toolbar = new Toolbar_Item();
                 ourPanel_Toolbar.SetData(panelName);
-                if (Modes.Contains(CreationMode.WithToolbars)) helper._CFG.Toolbars.AddItem(ourPanel_Toolbar);
+                if (_Config.Modes.Contains(CreationMode.WithToolbars)) helper._CFG.Toolbars.AddItem(ourPanel_Toolbar);
 
                 //Let's getting a buttons inside SplitButton (if exists)
                 var SplitButtons = panel2content.Value.Where(a => a.SplitButtonName != "");
@@ -258,17 +240,17 @@ namespace NC_UI_Creator_Lib
                     Configman_Command CFG_ButtonCommand = new Configman_Command(ButtonInfo.CommandName);
                     CFG_ButtonCommand.DispName = ButtonInfo.DisplayName;
                     CFG_ButtonCommand.StatusText = ButtonInfo.Description;
-                    CFG_ButtonCommand.SetIcon(this.IconResVariant, this.IconFormatVariant, ButtonInfo.CommandName, this.IconsRefPath_or_DLL);
+                    CFG_ButtonCommand.SetIcon(_Config.IconResVariant, _Config.IconFormatVariant, ButtonInfo.CommandName, _Config.IconsRefPath_or_DLL);
 
                     helper._CFG.Configman.Commands.AddCommand(CFG_ButtonCommand);
 
                     Menu_Item CFG_ButtonMenu = new Menu_Item();
                     CFG_ButtonMenu.SetData(ButtonInfo.DisplayName, ourPanel_Menu, ButtonInfo.CommandName);
-                    if (Modes.Contains(CreationMode.WithClassicMenu)) helper._CFG.Menus.AddItem(CFG_ButtonMenu);
+                    if (_Config.Modes.Contains(CreationMode.WithClassicMenu)) helper._CFG.Menus.AddItem(CFG_ButtonMenu);
 
                     Toolbar_Item CFG_Button_Toolbar = new Toolbar_Item();
                     CFG_Button_Toolbar.SetData(ButtonInfo.DisplayName, ourPanel_Toolbar, ButtonInfo.CommandName);
-                    if (Modes.Contains(CreationMode.WithToolbars)) helper._CFG.Toolbars.AddItem(CFG_Button_Toolbar);
+                    if (_Config.Modes.Contains(CreationMode.WithToolbars)) helper._CFG.Toolbars.AddItem(CFG_Button_Toolbar);
                 }
 
                 helper._CUI._RibbonPanelSourceCollection.Add(ourPanel);

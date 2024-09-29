@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
+    <OutputPath>$(SolutionDir)bin\$(Configuration)</OutputPath>
     <TargetFrameworks>net6.0;net45</TargetFrameworks>
   </PropertyGroup>
 
@@ -11,6 +12,15 @@
 
   <ItemGroup>
     <None Update="Icons\PseudoIcon_32.bmp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="UI_CSV_Sample.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="UI_CSV_SampleScript.bat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="UI_CSV_Sample_config.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UI_Creator_FromCSV_Config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Modes>
+    <CreationMode>WithClassicMenu</CreationMode>
+    <CreationMode>WithToolbars</CreationMode>
+  </Modes>
+  <IconsRefPath_or_DLL>Icons</IconsRefPath_or_DLL>
+  <IconResVariant>LocalFile</IconResVariant>
+  <IconFormatVariant>BMP</IconFormatVariant>
+  <RibbonName>UI_CSV_Sample</RibbonName>
+  <CSV_FilePath>UI_CSV_Sample.csv</CSV_FilePath>
+  <CSV_Separator>9</CSV_Separator>
+  <CSV_SkipHeader>true</CSV_SkipHeader>
+</UI_Creator_FromCSV_Config>

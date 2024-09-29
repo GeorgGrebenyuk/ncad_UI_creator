@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFrameworks>net6.0;net45</TargetFrameworks>
+    <OutputPath>$(SolutionDir)bin\$(Configuration)</OutputPath>
+    <AssemblyVersion>1.0.0</AssemblyVersion>
+    <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
+    <GenerateDependencyFile>false</GenerateDependencyFile>
+    <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NC_UI_Creator_Lib\NC_UI_Creator_Lib.csproj" />
+  </ItemGroup>
+
+</Project>

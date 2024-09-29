@@ -1,0 +1,4 @@
+Имя команды	Внутреннее имя	Описание	Имя панели	Размер в ленте	RibbonSplitButton
+Button1	NC_UI_Creator_Sample_Command1	Запускает команду 1	Panel 1	LargeWithText	
+Button2	NC_UI_Creator_Sample_Command2	Запускает команду 1 из группы	Panel 1	LargeWithText	Группа кнопок
+Button3	NC_UI_Creator_Sample_Command3	Запускает команду 2 из группы	Panel 1	LargeWithText	Группа кнопок

@@ -15,7 +15,8 @@ namespace NC_UI_Creator_Sample
     /// </summary>
     public class UI_Creator_Sample
     {
-        private static void CreateManual()
+        [STAThread]
+        public static void Main(string[] args)
         {
             UI_Creator uI_Creator = new UI_Creator();
             uI_Creator.DataSavePath = @"C:\Users\Georg\Documents\GitHub\ncad_UI_creator\test\1";
@@ -61,11 +62,6 @@ namespace NC_UI_Creator_Sample
             //Добавляем информацию о связи панелей с лентой в cui
             uI_Creator._CUI._RibbonTabSourceCollection.Add(myTab);
 
-            //Создаем вторую панель с мелкими иконками
-            RibbonPanelSource myPanel2 = new RibbonPanelSource("Panel2", "Panel 2");
-            //Создает специальный контейнер для иконок
-            RibbonRowPanel myRowPanel1_atPanel2 = new RibbonRowPanel();
-
             uI_Creator._CUI.SaveEdits();
             uI_Creator.SaveCUIX();
 
@@ -77,7 +73,7 @@ namespace NC_UI_Creator_Sample
             myButton1_atPanel1_CFG.LocalName = myButton1_myButton2.Id;
             myButton1_atPanel1_CFG.DispName = myButton1_myButton2.Text;
             myButton1_atPanel1_CFG.StatusText = "Выводит окно 1";
-            myButton1_atPanel1_CFG.SetIcon(IconResourceVariant.ResDll, IconVariant.ICO, "a_cap", "MenuRes.dll");
+            myButton1_atPanel1_CFG.SetIcon(IconResourceVariant.LocalFile, IconVariant.BMP, "PseudoIcon_32", "Icons");
 
             //Кнопка будет доступна вне любого документа
             myButton1_atPanel1_CFG.cmdType = CommandContextVariant.Application;
@@ -88,7 +84,7 @@ namespace NC_UI_Creator_Sample
             myButton1_myButton2_CFG.DispName = myButton1_atPanel1.Text;
             myButton1_myButton2_CFG.StatusText = "Кнопка 1 из группы на панели 1";
             myButton1_myButton2_CFG.cmdType = CommandContextVariant.Document;
-            myButton1_myButton2_CFG.SetIcon(IconResourceVariant.ResDll, IconVariant.ICO, "k_cap", "MenuRes.dll");
+            myButton1_myButton2_CFG.SetIcon(IconResourceVariant.LocalFile, IconVariant.BMP, "PseudoIcon_32", "Icons");
             uI_Creator._CFG.Configman.Commands.AddCommand(myButton1_myButton2_CFG);
 
 
@@ -97,7 +93,7 @@ namespace NC_UI_Creator_Sample
             myButton2_myButton2_CFG.DispName = myButton2_myButton2.Text;
             myButton2_myButton2_CFG.StatusText = "Кнопка 2 из группы на панели 1";
             myButton2_myButton2_CFG.cmdType = CommandContextVariant.Document;
-            myButton2_myButton2_CFG.SetIcon(IconResourceVariant.ResDll, IconVariant.BMP, "s_cap", "MenuRes.dll");
+            myButton2_myButton2_CFG.SetIcon(IconResourceVariant.LocalFile, IconVariant.BMP, "PseudoIcon_32", "Icons");
             uI_Creator._CFG.Configman.Commands.AddCommand(myButton2_myButton2_CFG);
 
             Configman_Command myButton4_atPanel1_Bottom_CFG = new Configman_Command(myButton4_atPanel1_Bottom.MenuMacroID);
@@ -110,33 +106,6 @@ namespace NC_UI_Creator_Sample
 
             //создание классического меню для панелей и кнопок на них
             uI_Creator.SaveCFG();
-        }
-
-        private static void CreateFromCSV()
-        {
-            string csv_demo_TBSGIS = @"C:\Users\Georg\Documents\GitHub\ncad_UI_creator\test\2\TBS_GIS_2.csv";
-
-            var modes = new UI_Creator_FromCSV.CreationMode[] { UI_Creator_FromCSV.CreationMode.WithClassicMenu, UI_Creator_FromCSV.CreationMode.WithToolbars };
-            UI_Creator_FromCSV creator = new UI_Creator_FromCSV(csv_demo_TBSGIS, '\t', true);
-
-            creator.Modes = modes;
-            creator.IconResVariant = IconResourceVariant.LocalFile;
-            creator.IconFormatVariant = IconVariant.ICO;
-            creator.IconsRefPath_or_DLL = "Icons";
-            creator.RibbonName = "TBS GIS2";
-
-            var UI_Data = creator.Create();
-            UI_Data.DataSavePath = Path.GetDirectoryName(csv_demo_TBSGIS);
-
-            UI_Data.SaveCUIX();
-            UI_Data.SaveCFG();
-        }
-
-        [STAThread]
-        public static void Main(string[] args)
-        {
-            CreateFromCSV();
-            CreateManual();
 
             Console.WriteLine("End!");
 
