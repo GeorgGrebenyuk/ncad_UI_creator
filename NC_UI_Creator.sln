@@ -7,12 +7,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NC_UI_Creator_Lib", "src\NC
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{517A3399-63C3-43C0-8FDC-E68BB8591B4F}"
 	ProjectSection(SolutionItems) = preProject
+		NEWS.md = NEWS.md
 		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NC_UI_Creator_Sample", "src\NC_UI_Creator_Sample\NC_UI_Creator_Sample.csproj", "{C9244DC6-595E-47A6-91DD-3FFF9D642B9E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NC_UI_Creator_App", "src\NC_UI_Creator_App\NC_UI_Creator_App.csproj", "{DF1D9902-B17D-4523-9F2B-766A141BA069}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NC_UI_Creator_App", "src\NC_UI_Creator_App\NC_UI_Creator_App.csproj", "{DF1D9902-B17D-4523-9F2B-766A141BA069}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
