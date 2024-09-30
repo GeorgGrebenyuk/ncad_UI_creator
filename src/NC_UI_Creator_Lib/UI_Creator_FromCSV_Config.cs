@@ -41,6 +41,8 @@ namespace NC_UI_Creator_Lib
 
         public bool CSV_SkipHeader { get; set; } = false;
 
+        public bool DeleteTempFiles { get; set; } = false;
+
         public UI_Creator_FromCSV_Config() { }
 
         public static UI_Creator_FromCSV_Config LoadFrom(string configXml_Path)

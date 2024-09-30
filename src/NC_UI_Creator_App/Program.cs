@@ -42,7 +42,7 @@ namespace NC_UI_Creator_App
             var UI_Data = creator.Create();
             UI_Data.DataSavePath = Path.GetDirectoryName(configPath);
 
-            UI_Data.SaveCUIX();
+            UI_Data.SaveCUIX(config.DeleteTempFiles);
             UI_Data.SaveCFG();
 
             Console.WriteLine("\nEnd!");

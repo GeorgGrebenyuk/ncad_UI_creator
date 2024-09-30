@@ -28,7 +28,7 @@ namespace NC_UI_Creator_Lib
             this._MPI = MPI;
         }
 
-        public void Save(string cuixDefaultFileName = CUIX_DefaultFileName, string cuixSaveDirectoryPath = "")
+        public void Save(string cuixDefaultFileName = CUIX_DefaultFileName, string cuixSaveDirectoryPath = "", bool DelTempFiles = false)
         {
             if (cuixSaveDirectoryPath == "") cuixSaveDirectoryPath = AppDomain.CurrentDomain.BaseDirectory;
             if (!Directory.Exists(cuixSaveDirectoryPath)) Directory.CreateDirectory(cuixSaveDirectoryPath);
@@ -50,12 +50,18 @@ namespace NC_UI_Creator_Lib
                 using (var zip = ZipFile.Open(CUIX_Path, ZipArchiveMode.Create))
                 {
                     zip.CreateEntryFromFile(CUI_Path, Path.GetFileName(CUI_Path));
-                    zip.CreateEntryFromFile(CT_Path, Path.GetFileName(CUI_Path));
-                    zip.CreateEntryFromFile(MPI_Path, Path.GetFileName(CUI_Path));
+                    zip.CreateEntryFromFile(CT_Path, Path.GetFileName(CT_Path));
+                    zip.CreateEntryFromFile(MPI_Path, Path.GetFileName(MPI_Path));
                 }
             }
             catch (Exception e) { throw new Exception(e.Message); }
 
+            if (DelTempFiles)
+            {
+                File.Delete(CUI_Path);
+                File.Delete(CT_Path);
+                File.Delete(MPI_Path);
+            }
             
         }
     }

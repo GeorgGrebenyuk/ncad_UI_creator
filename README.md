@@ -119,6 +119,7 @@ ui_helper.SaveCFG();
   <CSV_FilePath>UI_CSV_Sample.csv</CSV_FilePath>
   <CSV_Separator>9</CSV_Separator>
   <CSV_SkipHeader>true</CSV_SkipHeader>
+  <DeleteTempFiles>true</DeleteTempFiles>
 </UI_Creator_FromCSV_Config>
 ```
 
@@ -142,6 +143,8 @@ WithToolbars //toolbars
 - `CSV_Separator`: число, соответствующее символу разделителя данных в строке таблицы. (int)Char. Например, для `\t` оно равно 9;
 
 - `CSV_SkipHeader`: флаг (true/false), игнорировать ли первую строку файла (как правило, заголовочную);
+
+- `DeleteTempFiles`: флаг (true/false), удалять или нет временные фaйлы для CUIX (CUI, XML)
 
 # Возможности
 

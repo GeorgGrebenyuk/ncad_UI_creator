@@ -67,11 +67,11 @@ namespace NC_UI_Creator_Lib
         //    this._MPI = MPI;
         //}
 
-        public void SaveCUIX(string CUIXFileName = CUIX_File.CUIX_DefaultFileName)
+        public void SaveCUIX(bool DelTempFiles = false, string CUIXFileName = CUIX_File.CUIX_DefaultFileName)
         {
             CUIX_FileName = CUIXFileName;
             var _CUIX = new CUIX_File(_CUI, _CT, _MPI);
-            _CUIX.Save(CUIXFileName, DataSavePath);
+            _CUIX.Save(CUIXFileName, DataSavePath, DelTempFiles);
         }
 
         public void SaveCFG(string CFGFileName = CFG_File.CFG_DefaultFileName)
