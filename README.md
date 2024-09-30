@@ -119,7 +119,8 @@ ui_helper.SaveCFG();
   <CSV_FilePath>UI_CSV_Sample.csv</CSV_FilePath>
   <CSV_Separator>9</CSV_Separator>
   <CSV_SkipHeader>true</CSV_SkipHeader>
-  <DeleteTempFiles>true</DeleteTempFiles>
+  <DeleteCUIXFiles>true</DeleteCUIXFiles>
+  <DeleteConfigFiles>true</DeleteConfigFiles>
 </UI_Creator_FromCSV_Config>
 ```
 
@@ -144,7 +145,9 @@ WithToolbars //toolbars
 
 - `CSV_SkipHeader`: флаг (true/false), игнорировать ли первую строку файла (как правило, заголовочную);
 
-- `DeleteTempFiles`: флаг (true/false), удалять или нет временные фaйлы для CUIX (CUI, XML)
+- `DeleteCUIXFiles`: флаг (true/false), удалять или нет временные фaйлы для CUIX (CUI, XML);
+
+- `DeleteConfigFiles`: флаг (true/false), удалять или нет файл конфига (xml) и табличный файл `CSV_FilePath`;
 
 # Возможности
 

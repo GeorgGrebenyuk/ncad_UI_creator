@@ -23,14 +23,12 @@ namespace NC_UI_Creator_App
         public static void Main(string[] args)
         {
             string configPath = "";
-//#if DEBUG
-//            configPath = "test_2_config.xml";
-//#else
-//            if (args.Length == 0) OnExceptionWork(Exception_1);
-//            configPath = args[0];
-//#endif
+#if DEBUG
+            configPath = "UI_CSV_Sample_config.xml";
+#else
             if (args.Length == 0) OnExceptionWork(Exception_1);
             configPath = args[0];
+#endif
 
             if (!File.Exists(configPath)) OnExceptionWork(Exception_2 + configPath);
 
@@ -42,8 +40,18 @@ namespace NC_UI_Creator_App
             var UI_Data = creator.Create();
             UI_Data.DataSavePath = Path.GetDirectoryName(configPath);
 
-            UI_Data.SaveCUIX(config.DeleteTempFiles);
+            UI_Data.SaveCUIX(config.DeleteCUIXFiles);
             UI_Data.SaveCFG();
+
+            if (config.DeleteConfigFiles)
+            {
+                FileInfo configPathI = new FileInfo(configPath);
+                File.Delete(configPathI.FullName);
+
+                FileInfo CSV_FilePathI = new FileInfo(config.CSV_FilePath);
+                File.Delete(CSV_FilePathI.FullName);
+
+            }
 
             Console.WriteLine("\nEnd!");
 #if DEBUG

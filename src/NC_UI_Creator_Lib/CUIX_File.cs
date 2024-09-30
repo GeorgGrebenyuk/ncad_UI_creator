@@ -30,8 +30,11 @@ namespace NC_UI_Creator_Lib
 
         public void Save(string cuixDefaultFileName = CUIX_DefaultFileName, string cuixSaveDirectoryPath = "", bool DelTempFiles = false)
         {
-            if (cuixSaveDirectoryPath == "") cuixSaveDirectoryPath = AppDomain.CurrentDomain.BaseDirectory;
-            if (!Directory.Exists(cuixSaveDirectoryPath)) Directory.CreateDirectory(cuixSaveDirectoryPath);
+            if (cuixSaveDirectoryPath == "") 
+            {
+                //cuixSaveDirectoryPath = AppDomain.CurrentDomain.BaseDirectory;
+            }
+            else if (!Directory.Exists(cuixSaveDirectoryPath)) Directory.CreateDirectory(cuixSaveDirectoryPath);
             
 
             string CUI_Path = Path.Combine(cuixSaveDirectoryPath, CUIX_CUI_File.CUI_DefaultName);

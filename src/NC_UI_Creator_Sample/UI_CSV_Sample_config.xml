@@ -11,4 +11,6 @@
   <CSV_FilePath>UI_CSV_Sample.csv</CSV_FilePath>
   <CSV_Separator>9</CSV_Separator>
   <CSV_SkipHeader>true</CSV_SkipHeader>
+  <DeleteCUIXFiles>true</DeleteCUIXFiles>
+  <DeleteConfigFiles>true</DeleteConfigFiles>
 </UI_Creator_FromCSV_Config>
