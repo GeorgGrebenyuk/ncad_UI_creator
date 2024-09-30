@@ -51,10 +51,19 @@ namespace NC_UI_Creator_Lib
         
         private CSV_Info[] Data { get; set; }
         private UI_Creator_FromCSV_Config _Config { get; set; }
-        public UI_Creator_FromCSV(UI_Creator_FromCSV_Config config)
+        public UI_Creator_FromCSV(UI_Creator_FromCSV_Config config, string configPath)
         {
             _Config = config;
-            if (!File.Exists(_Config.CSV_FilePath)) throw new FileNotFoundException("Файл не найден " + _Config.CSV_FilePath);
+            if (!File.Exists(_Config.CSV_FilePath))
+            {
+                string CSV_FilePath_0 = _Config.CSV_FilePath;
+                _Config.CSV_FilePath = Path.Combine(Path.GetDirectoryName(configPath), _Config.CSV_FilePath);
+                if (!File.Exists(_Config.CSV_FilePath))
+                {
+                    throw new FileNotFoundException("Файл не найден " + _Config.CSV_FilePath);
+                }
+                    
+            }
             //Modes = modes;
             _Config.RibbonName = Path.GetFileNameWithoutExtension(_Config.CSV_FilePath);
 

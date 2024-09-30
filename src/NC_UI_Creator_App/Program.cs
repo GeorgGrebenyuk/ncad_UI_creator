@@ -35,7 +35,7 @@ namespace NC_UI_Creator_App
             UI_Creator_FromCSV_Config config = UI_Creator_FromCSV_Config.LoadFrom(configPath);
             if (config == null) OnExceptionWork(Exception_3);
 
-            UI_Creator_FromCSV creator = new UI_Creator_FromCSV(config);
+            UI_Creator_FromCSV creator = new UI_Creator_FromCSV(config, configPath);
 
             var UI_Data = creator.Create();
             UI_Data.DataSavePath = Path.GetDirectoryName(configPath);
