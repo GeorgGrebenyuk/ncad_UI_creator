@@ -12,8 +12,6 @@ namespace NC_UI_Creator_Lib
     {
         LargeWithText,
         LargeWithoutText,
-        MediumWithText,
-        MediumWithoutText,
         SmallWithText,
         SmallWithoutText
     }

@@ -33,10 +33,10 @@ namespace NC_UI_Creator_Lib
             public CSV_Info(string fileLine, char separator)
             {
                 string[] fileLineData = fileLine.Split(separator);
-                if (fileLineData.Length != 6) throw new Exception("Число аргументов не равно семи");
+                if (fileLineData.Length != 6) throw new Exception("Число аргументов не равно шести");
 
-                CommandName = fileLineData[0];
-                DisplayName = fileLineData[1];
+                CommandName = fileLineData[1];
+                DisplayName = fileLineData[0];
                 Description = fileLineData[2];
                 Panel = fileLineData[3];
                 ButtonStyleVariant ButtonStyleTemp = ButtonStyleVariant.LargeWithText;
@@ -65,7 +65,8 @@ namespace NC_UI_Creator_Lib
                     
             }
             //Modes = modes;
-            _Config.RibbonName = Path.GetFileNameWithoutExtension(_Config.CSV_FilePath);
+            if (_Config.RibbonName == UI_Creator_FromCSV_Config.RibbonNameDefault) _Config.RibbonName = Path.GetFileNameWithoutExtension(_Config.CSV_FilePath);
+
 
             int skip = 0;
             if (_Config.CSV_SkipHeader) skip = 1;
@@ -148,15 +149,17 @@ namespace NC_UI_Creator_Lib
                  * It's 
                  * It is advisable to run process the firstly for large, the next -- for medium, and in the end -- for small buttons
                  */
-                ButtonStyleVariant[] LargeStyles = new ButtonStyleVariant[] { ButtonStyleVariant.LargeWithText, ButtonStyleVariant.LargeWithoutText };
-                ButtonStyleVariant[] MediumStyles = new ButtonStyleVariant[] { ButtonStyleVariant.MediumWithText, ButtonStyleVariant.MediumWithoutText };
+                ButtonStyleVariant[] LargeStyles = new ButtonStyleVariant[] { ButtonStyleVariant.LargeWithText};
+                ButtonStyleVariant[] MediumStyles = new ButtonStyleVariant[] { ButtonStyleVariant.LargeWithoutText };
                 ButtonStyleVariant[] SmallStyles = new ButtonStyleVariant[] { ButtonStyleVariant.SmallWithoutText, ButtonStyleVariant.SmallWithText };
 
                 //The temp collection for useful commands (actually for Split's content)
                 List<string> usedCommands = new List<string>();
 
+                int PlaceLargeWithoutTextIconsEconomy_Count = 2;
+                if (this._Config.PlaceLargeWithoutTextIconsEconomy) PlaceLargeWithoutTextIconsEconomy_Count = 1;
                 ButtonsProcessing(panel2content.Value.Where(b => LargeStyles.Contains(b.ButtonStyle)), 1);
-                ButtonsProcessing(panel2content.Value.Where(b => MediumStyles.Contains(b.ButtonStyle)), 2);
+                ButtonsProcessing(panel2content.Value.Where(b => MediumStyles.Contains(b.ButtonStyle)), PlaceLargeWithoutTextIconsEconomy_Count);
                 ButtonsProcessing(panel2content.Value.Where(b => SmallStyles.Contains(b.ButtonStyle)), 3);
 
                 void ButtonsProcessing(IEnumerable<CSV_Info> buttons, int SizeValue)

@@ -15,6 +15,7 @@ namespace NC_UI_Creator_Lib
     /// </summary>
     public class UI_Creator_FromCSV_Config
     {
+        internal const string RibbonNameDefault = "NewRibbon";
         public enum CreationMode
         {
             WithClassicMenu,
@@ -33,7 +34,7 @@ namespace NC_UI_Creator_Lib
         /// <summary>
         /// The ribbon's name. By default = the name of CSV without extension
         /// </summary>
-        public string RibbonName { get; set; }
+        public string RibbonName { get; set; } = RibbonNameDefault;
 
         public string CSV_FilePath { get; set; }
 
@@ -44,6 +45,11 @@ namespace NC_UI_Creator_Lib
         public bool DeleteCUIXFiles { get; set; } = false;
 
         public bool DeleteConfigFiles { get; set; } = false;
+
+        /// <summary>
+        /// The flag, may place icons in column with two rows in RibbonTab
+        /// </summary>
+        public bool PlaceLargeWithoutTextIconsEconomy { get; set; } = true;
 
         public UI_Creator_FromCSV_Config() { }
 

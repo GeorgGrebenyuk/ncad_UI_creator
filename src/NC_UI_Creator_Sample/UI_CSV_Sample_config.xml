@@ -13,4 +13,5 @@
   <CSV_SkipHeader>true</CSV_SkipHeader>
   <DeleteCUIXFiles>true</DeleteCUIXFiles>
   <DeleteConfigFiles>true</DeleteConfigFiles>
+  <PlaceLargeWithoutTextIconsEconomy>false</PlaceLargeWithoutTextIconsEconomy>
 </UI_Creator_FromCSV_Config>

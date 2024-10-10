@@ -50,14 +50,15 @@ namespace NC_UI_Creator_Lib.CFG
         /// <param name="dll_or_localPath">Relative path to images or Resource-dll's name with extension</param>
         public void SetIcon(IconResourceVariant iconResVariant, IconVariant iconVariant, string icon_name, string dll_or_localPath = "")
         {
+            string ext = "." + iconVariant.ToString().ToLower();
             if (iconResVariant == IconResourceVariant.LocalFile)
             {
-                string ext = "." + iconVariant.ToString().ToLower();
                 if (dll_or_localPath != "") BitmapDll = dll_or_localPath + "\\" + icon_name + ext;
             }
             else if (iconResVariant == IconResourceVariant.ResDll)
             {
                 BitmapDll = dll_or_localPath + " |";
+                icon_name = icon_name.ToUpper();
                 if (iconVariant == IconVariant.ICO) BitmapDll += "Icon=s" + icon_name;
                 else BitmapDll += "BitmapId=s" + icon_name;
             }
