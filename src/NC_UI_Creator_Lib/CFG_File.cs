@@ -51,7 +51,12 @@ namespace NC_UI_Creator_Lib
             CFG_Data += Environment.NewLine;
             try
             {
-                File.WriteAllText(Path.Combine(cfgSaveDirectoryPath, cfgDefaultFileName), CFG_Data, Encoding.UTF8);
+                string savePath = Path.Combine(cfgSaveDirectoryPath, cfgDefaultFileName);
+                //Вместо File.WriteAllText из-за необходимости сохранить в кодировку "UTF8 BOM"
+                using (StreamWriter writer = new StreamWriter(savePath, false, new UTF8Encoding(true)))
+                {
+                    writer.WriteLine(CFG_Data);
+                }
             }
             catch (Exception e) { throw new Exception(e.Message); }
         }

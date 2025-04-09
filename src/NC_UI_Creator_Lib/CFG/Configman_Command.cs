@@ -57,7 +57,7 @@ namespace NC_UI_Creator_Lib.CFG
             }
             else if (iconResVariant == IconResourceVariant.ResDll)
             {
-                BitmapDll = dll_or_localPath + " |";
+                BitmapDll = dll_or_localPath + ".dll" + " |";
                 icon_name = icon_name.ToUpper();
                 if (iconVariant == IconVariant.ICO) BitmapDll += "Icon=s" + icon_name;
                 else BitmapDll += "BitmapId=s" + icon_name;
