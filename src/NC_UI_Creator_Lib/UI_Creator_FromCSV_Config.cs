@@ -51,6 +51,10 @@ namespace NC_UI_Creator_Lib
         /// </summary>
         public bool PlaceLargeWithoutTextIconsEconomy { get; set; } = true;
 
+        public string CfgName { get; set; } = CFG_File.CFG_DefaultFileName;
+
+        public string CuixName { get; set; } = CUIX_File.CUIX_DefaultFileName;
+
         public UI_Creator_FromCSV_Config() { }
 
         public static UI_Creator_FromCSV_Config LoadFrom(string configXml_Path)

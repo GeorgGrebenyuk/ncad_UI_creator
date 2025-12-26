@@ -1,5 +1,11 @@
 # Updates's info
 
+## Version 1.0.7
+
+*26-12-2025*
+
+* [UI_Creator_FromCSV] Добавлены параметры `CfgName`, `CuixName` со значениями по умолчанию `NC_UI_DEF`;
+
 ## Version 1.0.6
 
 *09-04-2025*
