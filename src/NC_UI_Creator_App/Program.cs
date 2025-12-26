@@ -40,8 +40,8 @@ namespace NC_UI_Creator_App
             var UI_Data = creator.Create();
             UI_Data.DataSavePath = Path.GetDirectoryName(configPath);
 
-            UI_Data.SaveCUIX(config.DeleteCUIXFiles);
-            UI_Data.SaveCFG();
+            UI_Data.SaveCUIX(config.DeleteCUIXFiles, config.CuixName);
+            UI_Data.SaveCFG(config.CfgName);
 
             if (config.DeleteConfigFiles)
             {
