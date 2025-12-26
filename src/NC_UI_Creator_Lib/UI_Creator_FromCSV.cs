@@ -86,7 +86,7 @@ namespace NC_UI_Creator_Lib
         {
             UI_Creator helper = new UI_Creator();
 
-            Ribbon ourRibbon_CFG = new Ribbon(_Config.RibbonName);
+            Ribbon ourRibbon_CFG = new Ribbon(_Config.RibbonName, _Config.CuixName);
             helper._CFG.Ribbons.Add(ourRibbon_CFG);
 
             RibbonTabSource ourRibbon = new RibbonTabSource(_Config.RibbonName);

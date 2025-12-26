@@ -14,9 +14,9 @@ namespace NC_UI_Creator_Lib.CFG
         public string RibbonName { get; set; }
         public string CUIX_Path { get; set; } = "%CFG_PATH%\\" + CUIX_File.CUIX_DefaultFileName;
         public bool Visiable { get; set; } = true;
-        public Ribbon(string RibbonName, string CUIX_Path = "")
+        public Ribbon(string RibbonName, string CUIX_Name = "")
         {
-            if (CUIX_Path != "") this.CUIX_Path = CUIX_Path;
+            if (CUIX_Name != "") this.CUIX_Path = "%CFG_PATH%\\" + CUIX_Name;
             this.RibbonName = RibbonName;
             CFG_SetBlockName(@"\ribbon\" + RibbonName);
             
